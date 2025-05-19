@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <locale.h> // Necessário para usar setlocale e garantir acentuação
+#include <ctime>    // Para usar time(0) na semente do rand
 
 using namespace std;
 
@@ -46,20 +47,27 @@ int main() {
 
             // Gera cada número da senha, garantindo que não haja repetição
             do { s1 = rand() % 6 + 1; } while (0); // Primeiro número, qualquer valor entre 1 e 6
-            do { s2 = rand() % 6 + 1; } while (s2 == s1); // Segundo número, diferente do primeiro
-            do { s3 = rand() % 6 + 1; } while (s3 == s1 || s3 == s2); // Terceiro, diferente dos anteriores
-            do { s4 = rand() % 6 + 1; } while (s4 == s1 || s4 == s2 || s4 == s3); // Quarto, diferente dos anteriores
+            do { s2 = rand() % 6 + 1; } while (s2 == s1);
+            do { s3 = rand() % 6 + 1; } while (s3 == s1 || s3 == s2);
+            do { s4 = rand() % 6 + 1; } while (s4 == s1 || s4 == s2 || s4 == s3);
 
             int tentativas = 10; // Número máximo de tentativas permitidas
             bool venceu = false; // Variável para controlar se o jogador acertou a senha
 
             // Loop das tentativas do jogador
             while (tentativas > 0 && !venceu) {
-                int g1, g2, g3, g4; // Variáveis para armazenar o palpite do jogador
+                int palpite;
+                int g1, g2, g3, g4;
 
                 // Instrução clara para o usuário sobre como digitar o palpite
-                cout << "\nDigite seu palpite: 4 números entre 1 e 6, separados por ESPAÇO e sem repetir (exemplo: 2 4 5 1): ";
-                cin >> g1 >> g2 >> g3 >> g4;
+                cout << "\nDigite seu palpite: 4 números entre 1 e 6, juntos e sem repetir (exemplo: 2451): ";
+                cin >> palpite;
+
+                // Separa os dígitos usando divisões inteiras e módulo
+                g1 = (palpite / 1000) % 10;
+                g2 = (palpite / 100) % 10;
+                g3 = (palpite / 10) % 10;
+                g4 = palpite % 10;
 
                 // Validação do palpite: verifica se está no intervalo e se não há repetição
                 if (g1 < 1 || g1 > 6 || g2 < 1 || g2 > 6 || g3 < 1 || g3 > 6 || g4 < 1 || g4 > 6 ||
