@@ -30,8 +30,6 @@ setlocale(LC_ALL, "Portuguese");
 
 - **Por que isso é importante?**  
   Sem esse comando, dependendo do computador, os acentos podem aparecer como símbolos estranhos ou não aparecer.
-- **Por que não usar aspas vazias ("")?**  
-  Se usar `setlocale(LC_ALL, "")`, o programa pega o idioma do computador onde foi compilado, o que pode não ser português. Por isso, foi definido explicitamente `"Portuguese"`.
 
 ---
 
@@ -65,15 +63,24 @@ O programa é composto por um **menu principal** com três opções:
 - **Cálculo dos pinos pretos e brancos**: A lógica compara cada posição do palpite com o código para contar acertos exatos (pretos) e acertos fora de posição (brancos).
 - **Limpeza de tela e pausa**: Utiliza apenas comandos ensinados em aula, como `system("cls")` para limpar o terminal e `system("pause")` para pausar a execução.
 - **Comentários detalhados**: O código está amplamente comentado para facilitar o entendimento, conforme orientação do professor.
-- **Sem bibliotecas avançadas**: Não são utilizados arrays, funções, `cin.ignore`, nem bibliotecas além das básicas (`iostream`, `cstdlib` e `locale.h`).
+- **Sem bibliotecas avançadas**: Não são utilizados arrays, funções, `cin.ignore`, nem bibliotecas além das básicas (`iostream`, `cstdlib`, `locale.h` e `ctime`).
 
 ---
 
 ## Como Jogar
 
-- **Importante:** Sempre digite os 4 números do palpite separados por espaço na mesma linha (exemplo: `2 4 5 1`) e pressione Enter.
-- Se digitar menos de 4 números, o programa aguardará a entrada dos demais.
-- Caso digite números repetidos ou fora do intervalo, será exibida uma mensagem de erro e você poderá tentar novamente sem perder tentativa.
+- **Importante:** Agora, para dar seu palpite, digite os 4 números juntos, sem espaço, e pressione Enter (exemplo: `2451`).  
+  Cada dígito deve ser um número entre 1 e 6, e não pode haver repetições.
+- O programa irá separar automaticamente cada dígito do número informado, usando operações matemáticas, e validar se o palpite está correto.
+- Caso digite números repetidos, fora do intervalo, ou um número com menos/more de 4 dígitos, será exibida uma mensagem de erro e você poderá tentar novamente sem perder tentativa.
+
+---
+
+## Exemplo de Entrada
+
+```
+Digite seu palpite: 4 números entre 1 e 6, juntos e sem repetir (exemplo: 2451): 1356
+```
 
 ---
 
